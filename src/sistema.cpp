@@ -211,8 +211,6 @@ string Sistema::enter_server(int id, const string nome, const string codigo) {
     return "== Servidor '" + nome + "' não existe! ==";
 
   auto it_user = search_it_usuariosLogados(id);
-  if( !(it_user->second.first.empty()) ) 
-    return "== Saia do servidor conectado atualmente! ==";
 
   if(it_server->getUsuarioDonoId() == id ||
     it_server->getCodigoConvite().empty() || 
@@ -321,9 +319,6 @@ string Sistema::enter_channel(int id, const string nome) {
 
   if(it_user->second.second == nome)
     return "== Usuário já está no canal! ==";
-
-  if( !(it_user->second.second.empty()) ) 
-    return "== Saia do canal de texto conectado atualmente! ==";
   
   string str_erro = search_it_servidores(nomeServidor)->enter_leave_channel(nome);
   if(str_erro != "")
